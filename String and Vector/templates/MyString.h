@@ -31,4 +31,4 @@ private:
 
 };
 
-#endif
+#endif // MYSTRING_H INCLUDED

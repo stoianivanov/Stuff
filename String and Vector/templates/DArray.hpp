@@ -69,4 +69,4 @@ void DArray<TYPE>::print(std::ostream& output)
 }
 
 
-#endif
+#endif // DARRAY_H INCLUDED
