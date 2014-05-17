@@ -3,7 +3,8 @@
 MyString::MyString()
 {
 	std::cout << "STR CONSTR @ " << this << std::endl;
-	allocate();
+	cap = DEFAULT_SIZE;
+	data = NULL;
 }
 
 MyString::MyString(const MyString& other)
@@ -24,8 +25,10 @@ MyString& MyString::operator=(const MyString& other)
 
 MyString& MyString::operator=(const char* source)
 {
-	if(cap <= strlen(source))
+	if(strlen(source) >= cap)
 		resize(strlen(source));
+	else
+		allocate();
 
 	strcpy(data, source);
 
@@ -40,17 +43,17 @@ MyString::~MyString()
 
 void MyString::allocate()
 {
-	cap = DEFAULT_SIZE;
 	data = new char[cap];
 }
 
 void MyString::copyFrom(const MyString& other)
 {
 	std::cout << "COPY CONSTR @ " << this << std::endl;
-	allocate();
 
 	if(strlen(other.data) >= cap)
 		resize(strlen(other.data));
+	else
+		allocate();
 
 	strcpy(data, other.data);
 }
@@ -59,15 +62,19 @@ void MyString::resize(int new_size)
 {
 	cap = new_size*2;
 	char* _data = new char[cap];
-	strcpy(_data, data);
+	if(data)
+	{
+		strcpy(_data, data);
+		delete[] data;
+	}
 
-	delete[] data;
 	data = _data;
 }
 
 void MyString::free()
 {
 	delete[] data;
+	data = NULL;
 }
 
 std::ostream& operator<<(std::ostream& output_stream, const MyString& str)

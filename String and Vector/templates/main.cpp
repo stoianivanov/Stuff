@@ -20,5 +20,7 @@ int main()
 	arr.push(four);
 	arr.push(five);
 
+	arr.print(std::cout);
+
 	return 0;
 }

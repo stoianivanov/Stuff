@@ -11,6 +11,7 @@ public:
 
 public:
 	void push(TYPE &);
+	void print(std::ostream &);
 
 
 private:
@@ -59,5 +60,13 @@ void DArray<TYPE>::resize(int new_size)
 	delete[] arr;
 	arr = _arr;
 }
+
+template<typename TYPE>
+void DArray<TYPE>::print(std::ostream& output)
+{
+	for(int i=0; i <= used_size - 1; ++i)
+		output << arr[i];
+}
+
 
 #endif
