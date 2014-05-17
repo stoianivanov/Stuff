@@ -13,6 +13,9 @@ public:
 	void push(TYPE &);
 	void print(std::ostream &);
 
+public:
+	TYPE& operator[](int);
+	const TYPE& operator[](int) const;
 
 private:
 	TYPE* arr;
@@ -66,6 +69,21 @@ void DArray<TYPE>::print(std::ostream& output)
 {
 	for(int i=0; i <= used_size - 1; ++i)
 		output << arr[i];
+}
+
+template<typename TYPE>
+const TYPE& DArray<TYPE>::operator[](int position) const
+{
+	if(position < 0 || position > used_size)
+		throw std::out_of_range("Invalid index");
+
+	return arr[position];
+}
+
+template<typename TYPE>
+TYPE& DArray<TYPE>::operator[](int position)
+{
+	return const_cast<TYPE &>(static_cast<const DArray &> (*this)[position]);
 }
 
 

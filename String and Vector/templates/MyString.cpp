@@ -35,6 +35,53 @@ MyString& MyString::operator=(const char* source)
 	return *this;
 }
 
+bool MyString::operator==(const MyString& other) const
+{
+	return data == other.data;
+}
+
+bool MyString::operator==(const char* source) const
+{
+	return !strcmp(data, source);
+}
+
+MyString& MyString::operator+=(const char c)
+{
+	if(strlen(data) + 1 >= cap)
+		resize(strlen(data) + 2);
+
+	data[strlen(data)] = c;
+	data[strlen(data) + 1] = '\0';
+
+	return *this;
+}
+
+MyString& MyString::operator+=(const char* source)
+{
+	if(strlen(data) + strlen(source) >= cap)
+		resize(strlen(data) + strlen(source) + 1);
+
+	strcat(data, source);
+
+	return *this;
+}
+
+
+
+char& MyString::operator[](int position)
+{
+	return const_cast<char &>(static_cast<const MyString &> (*this)[position]);
+}
+
+const char& MyString::operator[](int position) const
+{
+	if(position < 0 || position > cap)
+		throw std::out_of_range("Invalid index");
+
+	return data[position];
+}
+
+
 MyString::~MyString()
 {
 	std::cout << "DESTRUCTOR @ " << this << std::endl;
@@ -69,6 +116,16 @@ void MyString::resize(int new_size)
 	}
 
 	data = _data;
+}
+
+bool MyString::find(const char* source)
+{
+	return strstr(data, source);
+}
+
+bool MyString::find(const MyString& other)
+{
+	return (*this).find(other.data);
 }
 
 void MyString::free()
