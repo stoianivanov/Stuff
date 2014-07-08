@@ -1,7 +1,9 @@
 #include "Bar.h"
 
-Bar::Bar() : drinks(NULL), currentDrink(0), capacity(50)
-{ }
+Bar::Bar() : currentDrink(0), capacity(50)
+{
+	drinks = new Drink[capacity];
+}
 
 Bar::~Bar()
 {
@@ -10,10 +12,7 @@ Bar::~Bar()
 
 bool Bar::addDrink(const Drink& rhs)
 {
-	if(!currentDrink)
-		drinks = new Drink[capacity];
-
-	/// Тук трябва да стои проверка за resize
+	/// Check for resize
 
 	drinks[currentDrink] = rhs;
 	++currentDrink;
