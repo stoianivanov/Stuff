@@ -47,12 +47,12 @@ void Drink::copyFrom(const Drink& rhs)
 	percentAlcohol = rhs.percentAlcohol;
 }
 
-bool Drink::operator>(const Drink& rhs)
+bool Drink::operator>(const Drink& rhs) const
 {
 	return strcmp(pName, rhs.pName) < 0;
 }
 
-bool Drink::operator<(const Drink& rhs)
+bool Drink::operator<(const Drink& rhs) const
 {
 	return strcmp(pName, rhs.pName) > 0;
 }

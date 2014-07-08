@@ -17,8 +17,8 @@ public:
 	int getPercent() const { return percentAlcohol; }
 
 public:
-	bool operator>(const Drink &);
-	bool operator<(const Drink &);
+	bool operator>(const Drink &) const;
+	bool operator<(const Drink &) const;
 	friend std::istream& operator>>(std::istream &, Drink &);
 	friend std::ostream& operator<<(std::ostream &, const Drink &);
 
