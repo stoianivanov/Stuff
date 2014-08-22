@@ -6,7 +6,8 @@
 class DecimalToBinary : public NumberConverter
 {
 public:
-	DecimalToBinary(char*);
+	DecimalToBinary(const char*);
+
 private:
 	virtual char* convert();
 };

@@ -1,44 +1,36 @@
 #include "DecimalToBinary.h"
 #include <iostream>
 
-DecimalToBinary::DecimalToBinary(char* numberToConvert) : NumberConverter(numberToConvert)
+DecimalToBinary::DecimalToBinary(const char* numberToConvert) : NumberConverter(numberToConvert)
 {
-	std::cout << convert();
+	std::cout << convert() << std::endl;
 }
 
 char* DecimalToBinary::convert()
 {
-	char* bin = new char[16];
-
 	int numberToConvert = atoi(pNumberToConvert);
 	int step = 0;
 
-	for(; numberToConvert > 0; step++)
+	for(; numberToConvert > 0; ++step)
 	{
 		if(numberToConvert % 2 == 0)
-			bin[step] = '0';
+			converted[step] = '0';
 		else
-			bin[step] = '1';
+			converted[step] = '1';
 
 		numberToConvert /= 2;
 	}
 	
-	bin[step] = '\0';
-	int len = strlen(bin);
+	converted[step] = '\0';
+	int len = strlen(converted);
 	char temp = 0;
 
-	for(int i=0; i <= (len-1)/2; i++)
+	for(int i=0; i <= (len-1)/2; ++i)
 	{
-		temp = bin[i];
-		bin[i] = bin[len-1-i];
-		bin[len-1-i] = temp;
+		temp = converted[i];
+		converted[i] = converted[len-1-i];
+		converted[len-1-i] = temp;
 	}
 
-	return bin;
-}
-
-int main()
-{
-	DecimalToBinary converter("255");
-	
+	return converted;
 }

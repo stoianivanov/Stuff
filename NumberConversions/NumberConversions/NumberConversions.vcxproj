@@ -76,11 +76,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnyToDecimal.h" />
     <ClInclude Include="DecimalToBinary.h" />
+    <ClInclude Include="DecimalToHex.h" />
+    <ClInclude Include="DecimalToOctal.h" />
     <ClInclude Include="NumberConverter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnyToDecimal.cpp" />
     <ClCompile Include="DecimalToBinary.cpp" />
+    <ClCompile Include="DecimalToHex.cpp" />
+    <ClCompile Include="DecimalToOctal.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="NumberConverter.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
